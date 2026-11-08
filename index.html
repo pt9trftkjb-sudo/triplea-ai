@@ -1,0 +1,219 @@
+
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#171717">
+
+<title>TripleA AI</title>
+
+<style>
+
+body {
+
+  background:#111;
+
+  color:white;
+
+  font-family:Arial,sans-serif;
+
+  padding:25px;
+
+  margin:0;
+
+}
+
+main {max-width:500px;margin:auto}
+
+.logo {
+
+  background:#68705A;
+
+  width:55px;height:55px;
+
+  border-radius:16px;
+
+  display:grid;place-items:center;
+
+  font-size:25px;font-weight:bold;
+
+}
+
+h1 {margin-bottom:4px}
+
+.sub {color:#aaa;font-size:14px}
+
+.card {
+
+  background:#202020;
+
+  padding:20px;
+
+  border-radius:18px;
+
+  margin-top:25px;
+
+}
+
+textarea {
+
+  width:100%;
+
+  height:130px;
+
+  box-sizing:border-box;
+
+  background:#303030;
+
+  color:white;
+
+  border:1px solid #555;
+
+  border-radius:12px;
+
+  padding:13px;
+
+  font-size:16px;
+
+}
+
+button {
+
+  width:100%;
+
+  padding:15px;
+
+  margin-top:12px;
+
+  border:0;
+
+  border-radius:12px;
+
+  background:#68705A;
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+}
+
+button:disabled {opacity:.4}
+
+#result {
+
+  background:#303030;
+
+  border-radius:12px;
+
+  padding:15px;
+
+  margin-top:15px;
+
+  display:none;
+
+  line-height:1.5;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main>
+
+<div class="logo">A</div>
+
+<h1>TRIPLEA AI</h1>
+
+<p class="sub">Tu asistente personal de MeYo 🖤</p>
+
+<div class="card">
+
+<strong>¿Qué te han escrito?</strong>
+
+<br><br>
+
+<textarea id="msg" placeholder="Pega aquí el mensaje..."></textarea>
+
+<button id="generate">Preparar respuesta</button>
+
+<div id="result"></div>
+
+<button id="copy" style="display:none">Copiar instrucciones</button>
+
+</div>
+
+</main>
+
+<script>
+
+let prompt = "";
+
+document.getElementById("generate").onclick = () => {
+
+ const msg = document.getElementById("msg").value.trim();
+
+ if(!msg) return;
+
+ prompt = `Actúa como TripleA AI.
+
+Eres una asistente de conversaciones.
+
+Hablas español natural, juvenil, coqueto y divertido.
+
+Adapta el coqueteo a cada persona.
+
+Escribe UNA sola respuesta breve, de 1 o 2 frases.
+
+Mantén la conversación interesante sin engañar ni presionar.
+
+No inventes sentimientos ni datos personales.
+
+Devuelve solo la respuesta lista para revisar y enviar.
+
+Mensaje recibido: ${msg}`;
+
+ document.getElementById("result").style.display="block";
+
+ document.getElementById("result").innerText =
+
+ "¡Mensaje preparado! Copia las instrucciones y pégalas en ChatGPT para generar tu respuesta.";
+
+ document.getElementById("copy").style.display="block";
+
+};
+
+document.getElementById("copy").onclick = async () => {
+
+ try {
+
+  await navigator.clipboard.writeText(prompt);
+
+  alert("¡Copiado! Ahora pégalo en ChatGPT.");
+
+  window.open("https://chatgpt.com/","_blank");
+
+ } catch(e) {
+
+  alert("No se pudo copiar. Inténtalo de nuevo.");
+
+ }
+
+};
+
+</script>
+
+</body>
+
+</html>
